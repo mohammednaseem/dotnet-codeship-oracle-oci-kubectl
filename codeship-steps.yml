@@ -1,6 +1,6 @@
 # codeship-steps.yml
 - name: Build and push to Azure Docker Registry
-  service: appkubectl
+  service: azure_dockercfg
   type: push
   tag: master
   image_name: dockerstore.azurecr.io/oci_kubectl:0.0.1
