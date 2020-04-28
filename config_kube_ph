@@ -1,0 +1,28 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: ##line4##
+    server: https://192.29.165.91:6443
+  name: cluster-c2wcnjsgm4t
+contexts:
+- context:
+    cluster: cluster-c2wcnjsgm4t
+    user: user-c2wcnjsgm4t
+  name: context-c2wcnjsgm4t
+current-context: context-c2wcnjsgm4t
+kind: ""
+users:
+- name: user-c2wcnjsgm4t
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - ce
+      - cluster
+      - generate-token
+      - --cluster-id
+      - ##line5##
+      - --region
+      - ap-mumbai-1
+      command: oci
+      env: []

@@ -1,0 +1,15 @@
+# codeship-steps.yml
+#- name: Build and push to azure docker registry
+#  service: appkubectl
+#  type: push
+#  tag: master
+#  image_name: dockerstore.azurecr.io/oci_kubectl:0.0.1
+#  registry: dockerstore.azurecr.io
+#  dockercfg_service: azure_dockercfg
+- name: check response to kubectl config
+  command: kubectl get nodes
+  service: appkubectl
+- name: check oci version
+  command: oci -v
+  service: appkubectl  
+
