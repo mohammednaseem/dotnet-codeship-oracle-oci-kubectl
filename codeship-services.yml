@@ -1,4 +1,4 @@
-app:
+appnet:
   build:
     image: codeship.azurecr.io/codeship-testing
     dockerfile_path: ./Dockerfile
