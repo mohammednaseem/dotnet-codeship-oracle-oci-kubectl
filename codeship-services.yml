@@ -1,7 +1,7 @@
 app:
   build:
     image: dockerstore.azurecr.io/aksistioinsurance:0.1.2
-    dockerfile_path: Dockerfile
+    dockerfile_path: ./Dockerfile
 azure_dockercfg:
   image: codeship/azure-dockercfg-generator
   add_docker: true
