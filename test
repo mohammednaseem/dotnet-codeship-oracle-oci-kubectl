@@ -1,0 +1,3 @@
+AZURE_USERNAME=dockerstore
+AZURE_PASSWORD=nTN/lSTFLemDqR5NF8lV0q221cReuOPo
+AZURE_REGISTRY_NAME=dockerstore.azurecr.io
