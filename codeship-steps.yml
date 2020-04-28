@@ -13,6 +13,6 @@
   command: oci -v
   service: appkubectl  
 - name: Deploy to Oracle Kubernetes Engine
-  command: apply 
+  command: kubectl apply -f insurance.yaml
   service: appkubectl
 

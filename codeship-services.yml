@@ -1,4 +1,4 @@
-appnet:
+app:
   build:
     image: dockerstore.azurecr.io/aksistioinsurance:0.1.2
     dockerfile_path: ./Dockerfile
