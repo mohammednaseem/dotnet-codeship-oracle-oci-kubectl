@@ -3,7 +3,7 @@
   service: app
   type: push
   tag: master
-  image_name: dockerstore.azurecr.io/oci_kubectl:0.0.1
+  image_name: dockerstore.azurecr.io/aksistioinsurance:0.1.2
   registry: dockerstore.azurecr.io
   dockercfg_service: azure_dockercfg
 - name: Check response to kubectl config
@@ -13,6 +13,6 @@
   command: oci -v
   service: appkubectl  
 - name: Deploy to Oracle Kubernetes Engine
-  command: kubectl apply -f insurancev1.yaml 
+  command: apply 
   service: appkubectl
 
