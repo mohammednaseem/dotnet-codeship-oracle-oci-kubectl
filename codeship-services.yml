@@ -6,8 +6,8 @@ azure_dockercfg:
   image: codeship/azure-dockercfg-generator
   add_docker: true
   encrypted_env_file: az_config_encrypted
-#appkubectl:
-#  build:      
-#    image: dockerstore.azurecr.io/oci_kubectl:0.0.3
-#    dockerfile_path: Dockerfile
-#    encrypted_args_file: config_encrypted
+appkubectl:
+  build:      
+    image: dockerstore.azurecr.io/oci_kubectl:0.0.3
+    dockerfile_path: Dockerfile
+    encrypted_args_file: config_encrypted
