@@ -1,12 +1,12 @@
 # codeship-steps.yml
-- name: Build and push to Azure Docker Registry
-  service: app
-  type: push
-  tag: master
-  image_name: dockerstore.azurecr.io/aksistioinsurance
-  image_tag: "{{.BuildID}}"
-  registry: dockerstore.azurecr.io
-  dockercfg_service: azure_dockercfg
+#- name: Build and push to Azure Docker Registry
+#  service: app
+#  type: push
+#  tag: master
+#  image_name: dockerstore.azurecr.io/aksistioinsurance
+#  image_tag: "{{.BuildID}}"
+#  registry: dockerstore.azurecr.io
+#  dockercfg_service: azure_dockercfg
 - name: Check response to kubectl config
   command: kubectl get nodes
   service: appkubectl
@@ -16,4 +16,7 @@
 - name: Deploy to Oracle Kubernetes Engine
   command: kubectl apply -f insurance.yaml
   service: appkubectl
+- name: Print out the environment varibales
+  service: appkubectl
+  command: printenv
 
