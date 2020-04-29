@@ -3,7 +3,7 @@
   service: app
   type: push
   tag: master
-  image_name: dockerstore.azurecr.io/aksistioinsurance:0.3.4
+  image_name: dockerstore.azurecr.io/aksistioinsurance:{{BuildID}}
   registry: dockerstore.azurecr.io
   dockercfg_service: azure_dockercfg
 - name: Check response to kubectl config

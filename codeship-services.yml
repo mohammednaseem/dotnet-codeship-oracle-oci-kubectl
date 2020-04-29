@@ -1,6 +1,6 @@
 app:
   build:
-    image: dockerstore.azurecr.io/aksistioinsurance:0.1.2
+    image: dockerstore.azurecr.io/aksistioinsurance:{{BuildID}}
     dockerfile_path: ./Dockerfile
 azure_dockercfg:
   image: codeship/azure-dockercfg-generator
