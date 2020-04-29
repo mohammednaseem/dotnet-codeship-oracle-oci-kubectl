@@ -11,5 +11,6 @@ appkubectl:
     image: dockerstore.azurecr.io/oci_kubectl:0.0.3
     dockerfile_path: Dockerfile
     encrypted_args_file: config_encrypted
-    args:
-      BuildID: "{{ .Ci }}"
+  environment:
+   - BuildID={{.CI_BUILD_ID}}
+   - URL=www.codeship.com
