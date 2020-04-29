@@ -12,4 +12,4 @@ appkubectl:
     dockerfile_path: Dockerfile
     encrypted_args_file: config_encrypted
     args:
-      BuildID: "{{.CommitID}}"
+      BuildID: "{{ .CommitID }}"
