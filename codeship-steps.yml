@@ -18,5 +18,5 @@
   service: appkubectl
 - name: Print out the environment varibales
   service: appkubectl
-  command: bash -c "echo 'hello'"
+  command: printenv
 
