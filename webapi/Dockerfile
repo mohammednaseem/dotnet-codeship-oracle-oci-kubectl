@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
 
 # copy csproj and restore as distinct layers
-COPY *.sln .
+#COPY *.sln .
 COPY webapi/*.csproj ./webapi/
 RUN dotnet restore
 
@@ -10,6 +10,8 @@ RUN dotnet restore
 COPY webapi/. ./webapi/
 WORKDIR /app/webapi
 RUN dotnet publish -c Release -o out
+
+RUN Echo "17" > version.txt
 
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
