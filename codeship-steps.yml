@@ -14,7 +14,7 @@
   #command: oci -v
   #service: appkubectl  
 - name: Deploy to Oracle Kubernetes Engine
-  command: kubectl apply -f insurance.yaml
+  command: kubectl apply -f /config/.kube/insurance.yaml
   service: appkubectl
 - name: Print out the environment varibales
   service: appkubectl
