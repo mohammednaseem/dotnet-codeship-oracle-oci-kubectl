@@ -8,9 +8,9 @@ azure_dockercfg:
   encrypted_env_file: az_config_encrypted
 appkubectl:
   build:      
-    image: dockerstore.azurecr.io/oci_kubectl:0.0.3
+    image: dockerstore.azurecr.io/oci_kubectl:0.0.4
     dockerfile_path: Dockerfile
     encrypted_args_file: config_encrypted
-  args:
-    - BuildID=ooooooooooooooooo
-    - URL=www.codeship.com
+    #encrypted_env_file: config_encrypted
+    args:
+      BuildID: "{{ .BuildID }}"

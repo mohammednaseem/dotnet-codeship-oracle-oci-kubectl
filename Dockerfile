@@ -43,7 +43,7 @@ RUN mv ./kubectl /usr/local/bin && \
     #writing config
     cp config_oci_ph  $HOME/.oci/config && cp config_kube_ph  $HOME/.kube/config && \ 
     \
-    echo "$user" && echo "($finger)" && echo "($tenancy)" && echo "$region" && echo "($key_file)" && \
+    echo 'CI: ' && echo "Test: $BuildID"   && \
     \
     sed -i 's/##user##/'$user'/1'  $HOME/.oci/config  && sed -i 's/##finger##/'$fingerprint'/1'  $HOME/.oci/config  && \
     \
@@ -58,9 +58,7 @@ RUN mv ./kubectl /usr/local/bin && \
     cat $HOME/.oci/config && \
     \
     cat $HOME/.oci/oci_api_key.pem && \
-    \
     # oci test
-    oci -v && \
     \
     cp insurance.yaml $HOME/.kube/insurance.yaml &&  sed -i 's/##tag##/'$BuildID'/1' $HOME/.kube/insurance.yaml && cat $HOME/.kube/insurance.yaml && \
     \
