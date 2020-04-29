@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: insurance-api
-        image: dockerstore.azurecr.io/nm-codeship-testing:0.3.4 
+        image: dockerstore.azurecr.io/nm-codeship-testing:##tag##
         resources:
           requests:
             memory: "32Mi"

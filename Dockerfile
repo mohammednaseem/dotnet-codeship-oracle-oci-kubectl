@@ -12,6 +12,7 @@ ARG line2
 ARG line3
 ARG line4
 ARG line5
+ARG BuildID
 
 COPY requirements.txt ./
 COPY base_client.py ./
@@ -52,7 +53,7 @@ RUN mv ./kubectl /usr/local/bin && \
     \
     sed -i 's/##line4##/'$line4'/1'  $HOME/.kube/config  && sed -i 's/##line5##/'$line5'/1'  $HOME/.kube/config    && \
     \
-    sed -i "s|##line1##|$line1|1"  $HOME/.oci/oci_api_key.pem  && sed -i 's/##line2##/'$line2'/1'  $HOME/.oci/oci_api_key.pem  && sed -i "s|##line3##|$line3|1"  $HOME/.oci/oci_api_key.pem  && \
+    sed -i "s|##line1##|$line1|1" $HOME/.oci/oci_api_key.pem && sed -i 's/##line2##/'$line2'/1' $HOME/.oci/oci_api_key.pem && sed -i "s|##line3##|$line3|1"  $HOME/.oci/oci_api_key.pem  && \
     \
     cat $HOME/.oci/config && \
     \
@@ -60,6 +61,8 @@ RUN mv ./kubectl /usr/local/bin && \
     \
     # oci test
     oci -v && \
+    \
+    cp insurance.yaml $HOME/.kube/insurance.yaml &&  sed -i 's/##tag##/'$BuildID'/1' $HOME/.kube/insurance.yaml && cat $HOME/.kube/insurance.yaml && \
     \
     # connecting oce
 #    oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.ap-mumbai-1.aaaaaaaaafrdqmdehezdqnjzme2tanryhfstcytfg4zdgzlbhc2wcnjsgm4t --file $HOME/.kube/config --region ap-mumbai-1 --token-version 2.0.0 && \
