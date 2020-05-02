@@ -4,15 +4,15 @@
   type: push
   tag: master
   image_name: dockerstore.azurecr.io/aksistioinsurance
-  image_tag: "{{.BuildID}}"
+  image_tag: "{{.COMMIT_ID}}"
   registry: dockerstore.azurecr.io
   dockercfg_service: azure_dockercfg
-  #- name: Check response to kubectl config
-  #command: kubectl get nodes
-  #service: appkubectl
-  #- name: Check OCI Version
-  #command: oci -v
-  #service: appkubectl  
+- name: Check response to kubectl config
+  command: kubectl get nodes
+  service: appkubectl
+- name: Check OCI Version
+  command: oci -v
+  service: appkubectl  
 - name: Deploy to Oracle Kubernetes Engine
   command: kubectl apply -f /config/.kube/insurance.yaml
   service: appkubectl

@@ -12,7 +12,7 @@ ARG line2
 ARG line3
 ARG line4
 ARG line5
-ARG BuildID
+ARG CommitID
 
 COPY requirements.txt ./
 COPY base_client.py ./
@@ -60,7 +60,7 @@ RUN mv ./kubectl /usr/local/bin && \
     cat $HOME/.oci/oci_api_key.pem && \
     # oci test
     \
-    cp insurance.yaml $HOME/.kube/insurance.yaml &&  sed -i 's/##tag##/'$BuildID'/1' $HOME/.kube/insurance.yaml && cat $HOME/.kube/insurance.yaml && \
+    cp insurance.yaml $HOME/.kube/insurance.yaml &&  sed -i 's/##tag##/'$CommitID'/1' $HOME/.kube/insurance.yaml && cat $HOME/.kube/insurance.yaml && \
     \
     # connecting oce
 #    oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.ap-mumbai-1.aaaaaaaaafrdqmdehezdqnjzme2tanryhfstcytfg4zdgzlbhc2wcnjsgm4t --file $HOME/.kube/config --region ap-mumbai-1 --token-version 2.0.0 && \
