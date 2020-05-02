@@ -13,4 +13,4 @@ appkubectl:
     encrypted_args_file: config_encrypted
     #encrypted_env_file: config_encrypted
     args:
-      CommitID: "{{ .COMMIT_ID }}"
+      CommitID: "{{.CommitID }}"
