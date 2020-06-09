@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: insurance-api
-  namespace: nm
 spec:
   replicas: 1
   selector:
@@ -46,9 +45,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: insurance-api-service
-  namespace: nm
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - name: http
     protocol: TCP
