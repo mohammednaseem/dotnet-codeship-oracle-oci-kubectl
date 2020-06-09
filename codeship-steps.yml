@@ -7,7 +7,7 @@
   image_tag: "{{ .CommitID }}"
   registry: dockerhouse.azurecr.io
   dockercfg_service: azure_dockercfg
-- name: Check response to kubectl config
+- name: Check response to kubectl get nodes
   command: kubectl get nodes
   service: appkubectl
 - name: Check OCI Version
