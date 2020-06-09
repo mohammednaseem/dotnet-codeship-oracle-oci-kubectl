@@ -21,8 +21,10 @@ users:
       - cluster
       - generate-token
       - --cluster-id
-      - ##line5##
+      - ocid1.cluster.oc1.phx.aaaaaaaaaezgemzrmnqwmyrugqydcztdgmztim3ghbqtqzbvgcytqzdgguzd
       - --region
-      - us-phoenix-1
+      - ##region##
       command: oci
       env: []
+
+

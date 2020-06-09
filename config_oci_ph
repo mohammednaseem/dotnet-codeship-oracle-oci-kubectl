@@ -4,3 +4,4 @@ fingerprint=##finger##
 key_file=/config/.oci/oci_api_key.pem
 tenancy=##tenancy##
 region=##region##
+
