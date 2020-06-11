@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ibmappconnect-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  ibmappconnect-app
+      version: old
+  template:
+    metadata:
+      labels:
+        app:  ibmappconnect-app
+        version: old
+    spec:
+      containers:
+      - name: ibmappconnect-app
+        image: dockerhouse.azurecr.io/ibmappconnect:7.5.2.0
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 9443
+      imagePullSecrets:
+      - name: topsecretregistryconnection
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ibmappconnect-app-service
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80 
+    targetPort: 80     
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: 443
+  - name: admin
+    protocol: TCP
+    port: 9443
+    targetPort: 9443
+  selector:
+    app: ibmappconnect-app
