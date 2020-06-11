@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Insurance_v1.Controllers
+namespace InitApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class InitAppController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<InitAppController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public InitAppController(ILogger<InitAppController> logger)
         {
             _logger = logger;
         }
@@ -27,7 +27,7 @@ namespace Insurance_v1.Controllers
         public string Get()
         {
             var rng = new Random();
-            return "Health insurance, Life insurance, Dental insurance, Vision insurance"; 
+            return "Health InitApp, Life InitApp, Dental InitApp, Vision InitApp"; 
         }
     }
 }

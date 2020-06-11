@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Insurance_v1
+namespace InitApp
 {
     public class ExHealthCheck : IHealthCheck
     {

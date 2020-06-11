@@ -17,4 +17,4 @@ RUN Echo "17" > version.txt
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=build /app/webapi/out ./
-ENTRYPOINT ["dotnet", "Insurancev1.dll"]
+ENTRYPOINT ["dotnet", "InitApp.dll"]

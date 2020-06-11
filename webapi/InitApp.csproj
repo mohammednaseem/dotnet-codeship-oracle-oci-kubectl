@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Insurance_v1</RootNamespace>
+    <RootNamespace>InitApp</RootNamespace>
   </PropertyGroup>
 
 </Project>
