@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Net.Http; 
 
 namespace InitApp
 {
@@ -30,6 +31,14 @@ namespace InitApp
             services.AddControllers();
             services.AddHealthChecks()
                     .AddCheck<ExHealthCheck>("ex_health_check");
+
+            services.AddHttpClient("AppConnectClient").ConfigureHttpMessageHandlerBuilder(builder =>
+            {
+                builder.PrimaryHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (m, c, ch, e) => true
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
