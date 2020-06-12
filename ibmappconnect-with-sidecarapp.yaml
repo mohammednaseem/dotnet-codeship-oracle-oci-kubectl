@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ibmappconnect-with-sidecarapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  ibmappconnect-with-sidecarapp
+      version: old
+  template:
+    metadata:
+      labels:
+        app:  ibmappconnect-with-sidecarapp
+        version: old
+    spec:
+      containers:
+      - name: sidecarapp
+        image: dockerhouse.azurecr.io/codeshipacroke:##tag##
+        resources:
+          requests:
+            memory: "4Mi"
+            cpu: "2m"
+          limits:
+            memory: "12Mi"
+            cpu: "5m"
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+            httpHeaders:
+            - name: X-Custom-Header
+              value: Awesome
+          initialDelaySeconds: 90
+          periodSeconds: 10
+      - name: ibmappconnect-app
+        image: dockerhouse.azurecr.io/ibmappconnect:7.5.2.0
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 8443
+        - containerPort: 9443
+        env:              
+        - name: "DeviceName" 
+          value: "aStrangeDevice"        
+      imagePullSecrets:
+      - name: topsecretregistryconnection
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ibmappconnect-service
+spec:
+  type: LoadBalancer
+  ports:
+  - name: httpsidecar
+    protocol: TCP
+    port: 8000
+    targetPort: 8000
+  - name: httpibmappconnect
+    protocol: TCP
+    port: 80 
+    targetPort: 80     
+  - name: httpsibmappconnect
+    protocol: TCP
+    port: 443
+    targetPort: 443
+  - name: adminibmappconnect
+    protocol: TCP
+    port: 8443
+    targetPort: 8443
+  - name: adminsecureibmappconnect
+    protocol: TCP
+    port: 9443
+    targetPort: 9443
+  selector:
+    app:  ibmappconnect-with-sidecarapp

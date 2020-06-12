@@ -60,9 +60,7 @@ RUN mv ./kubectl /usr/local/bin && \
     cat $HOME/.oci/oci_api_key.pem && \
     # oci test
     \
-    cp insurance.yaml $HOME/.kube/insurance.yaml &&  sed -i 's/##tag##/'$CommitID'/1' $HOME/.kube/insurance.yaml && cat $HOME/.kube/insurance.yaml && \
-    \
-    cp ibmappconnect.yaml  $HOME/.kube/ibmappconnect.yaml && \
+    cp InitApp.yaml $HOME/.kube/ibmappconnect-with-sidecarapp.yaml &&  sed -i 's/##tag##/'$CommitID'/1' $HOME/.kube/ibmappconnect-with-sidecarapp.yaml && cat $HOME/.kube/ibmappconnect-with-sidecarapp.yaml && \
     \
     # connecting oce
     oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaaezgemzrmnqwmyrugqydcztdgmztim3ghbqtqzbvgcytqzdgguzd --file $HOME/.kube/config --region us-phoenix-1 --token-version 2.0.0  && \
