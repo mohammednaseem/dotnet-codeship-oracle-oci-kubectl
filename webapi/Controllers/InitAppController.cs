@@ -41,7 +41,7 @@ namespace InitApp.Controllers
             string toReturn = string.Empty;
             try {
 
-                    var url = _configuration["AppConnectServer"];
+                    var url = "https://127.0.0.1:8443/ws/security";// _configuration["AppConnectServer"];
                     _logger.LogInformation("The url: " + url);
                     Console.WriteLine("The url: " + url);
                     var request = new HttpRequestMessage(HttpMethod.Post, url);
