@@ -20,6 +20,7 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
+        - containerPort: 8443
         - containerPort: 9443
       imagePullSecrets:
       - name: topsecretregistryconnection
@@ -40,6 +41,10 @@ spec:
     port: 443
     targetPort: 443
   - name: admin
+    protocol: TCP
+    port: 8443
+    targetPort: 8443
+  - name: adminsecure
     protocol: TCP
     port: 9443
     targetPort: 9443
