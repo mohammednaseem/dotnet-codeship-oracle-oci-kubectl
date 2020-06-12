@@ -12,16 +12,16 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "InitApp",
+      "launchUrl": "ibmappconnect-with-sidecarapp",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "InitApp": {
+    "ibmappconnect-with-sidecarapp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "InitApp",
-      "applicationUrl": "http://localhost:5500",
+      "launchUrl": "ibmappconnect-with-sidecarapp",
+      "applicationUrl": "http://localhost:8000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
