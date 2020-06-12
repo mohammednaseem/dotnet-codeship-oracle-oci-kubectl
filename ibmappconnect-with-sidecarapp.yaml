@@ -16,35 +16,19 @@ spec:
     spec:
       containers:
       - name: sidecarapp
-        image: dockerhouse.azurecr.io/codeshipacroke:##tag##
-        resources:
-          requests:
-            memory: "4Mi"
-            cpu: "2m"
-          limits:
-            memory: "12Mi"
-            cpu: "5m"
+        image: dockerhouse.azurecr.io/codeshipacroke:##tag##         
         ports:
         - containerPort: 8000
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8000
-            httpHeaders:
-            - name: X-Custom-Header
-              value: Awesome
-          initialDelaySeconds: 90
-          periodSeconds: 10
+        env:              
+        - name: "AppConnectServer" 
+          value: "https://localhost:8443/ws/security"          
       - name: ibmappconnect-app
         image: dockerhouse.azurecr.io/ibmappconnect:7.5.2.0
         ports:
         - containerPort: 80
         - containerPort: 443
         - containerPort: 8443
-        - containerPort: 9443
-        env:              
-        - name: "DeviceName" 
-          value: "aStrangeDevice"        
+        - containerPort: 9443      
       imagePullSecrets:
       - name: topsecretregistryconnection
 ---
