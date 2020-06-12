@@ -17,8 +17,9 @@ namespace InitApp.Controllers
     {
         
         private readonly IHttpClientFactory _clientFactory;
-        public IConfiguration _configuration { get; }
+        private readonly IConfiguration _configuration;
         private readonly ILogger<InitAppController> _logger;
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -28,20 +29,24 @@ namespace InitApp.Controllers
         public InitAppController(IConfiguration configuration, 
                                 IHttpClientFactory clientFactory, 
                                 ILogger<InitAppController> logger)
-        {
+        {    
             _logger = logger;
             _clientFactory = clientFactory;
             _configuration  = configuration;
         }
+
         string xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sec=\"http://www.approuter.com/schemas/2008/1/security\">    <soapenv:Header/>    <soapenv:Body>        <sec:login>          <sec:username>admin</sec:username>          <sec:password>!n0r1t5@C</sec:password> </sec:login>    </soapenv:Body> </soapenv:Envelope>";
-      
         [HttpGet]
-        [Route("/InitApp/{ipaddress}")]               
-        public async Task<string> Get([FromRoute]string ipaddress)
+        [Route("/InitApp")]               
+        public async Task<string> Get([FromRoute]string ipaddressP)
         {
             string toReturn = string.Empty;
             try {
-                    var url = "https://" + ipaddress + ":8443/ws/security";// _configuration["AppConnectServer"];
+                    string ipAddress =  _configuration.GetValue<string>("AppConnectServerIP");
+                    if(ipaddressP == null) 
+                        ipaddressP  = ipAddress;
+
+                    var url = "https://" + ipaddressP + ":8443/ws/security";  
                     _logger.LogInformation("The url: " + url);
                     Console.WriteLine("The url: " + url);
                     var request = new HttpRequestMessage(HttpMethod.Post, url);
