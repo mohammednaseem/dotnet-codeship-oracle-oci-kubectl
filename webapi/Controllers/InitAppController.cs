@@ -36,12 +36,12 @@ namespace InitApp.Controllers
         string xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sec=\"http://www.approuter.com/schemas/2008/1/security\">    <soapenv:Header/>    <soapenv:Body>        <sec:login>          <sec:username>admin</sec:username>          <sec:password>!n0r1t5@C</sec:password> </sec:login>    </soapenv:Body> </soapenv:Envelope>";
       
         [HttpGet]
-        public async Task<string> Get()
+        [Route("/InitApp/{ipaddress}")]               
+        public async Task<string> Get([FromRoute]string ipaddress)
         {
             string toReturn = string.Empty;
             try {
-
-                    var url = "https://127.0.0.1:8443/ws/security";// _configuration["AppConnectServer"];
+                    var url = "https://" + ipaddress + ":8443/ws/security";// _configuration["AppConnectServer"];
                     _logger.LogInformation("The url: " + url);
                     Console.WriteLine("The url: " + url);
                     var request = new HttpRequestMessage(HttpMethod.Post, url);
