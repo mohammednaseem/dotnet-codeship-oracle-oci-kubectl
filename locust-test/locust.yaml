@@ -17,8 +17,16 @@ spec:
         image: dockerhouse.azurecr.io/locusttest:1.0.0         
         ports:
         - containerPort: 8089
+        volumeMounts:
+            - mountPath: /mnt/locust/locustfile.py
+              subPath: locustfile.py
+              name: locust-scripts
       imagePullSecrets:
       - name: topsecretregistryconnection
+      volumes:
+      - name: locust-scripts
+        configMap:
+          name: scripts-cm
 ---
 kind: Service
 apiVersion: v1
