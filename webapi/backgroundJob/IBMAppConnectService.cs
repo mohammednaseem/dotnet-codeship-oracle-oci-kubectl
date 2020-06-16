@@ -118,9 +118,9 @@ namespace InitApp.BackgroundJob
 
                 //request.Headers.Add("Content-Type", "application/octet-stream");
                 //request.Headers.Add("ContentLength", fileContents.Length.ToString());
-                using (var stream = new FileStream("filepath/AddTwoNumbers.par", FileMode.Open))
+                //using (var stream = new FileStream("filepath/AddTwoNumbers.par", FileMode.Open))
                 {
-                    await request.Content.ReadAsByteArrayAsync().CopyToAsync(stream);
+                   // await request.Content.ReadAsByteArrayAsync().CopyToAsync(stream);
                 }
                  
                 MultipartFormDataContent multiPartContent = new MultipartFormDataContent("----MyGreatBoundary");

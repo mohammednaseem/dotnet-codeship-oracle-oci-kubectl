@@ -27,8 +27,8 @@ namespace InitApp.BackgroundJob
         {
             _logger.LogInformation("Timed Hosted Service running.");
 
-            _timer = new Timer(_IAppConnectSideCar.PrepAppConnect, null, TimeSpan.Zero, 
-                TimeSpan.FromSeconds(15));
+            //_timer = new Timer(_IAppConnectSideCar.PrepAppConnect, null, TimeSpan.Zero, 
+              //  TimeSpan.FromSeconds(15));
 
             return Task.CompletedTask;
         }
