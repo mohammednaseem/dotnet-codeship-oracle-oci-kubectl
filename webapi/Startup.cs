@@ -1,18 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Net.Http; 
+using System.Net.Http;
+using InitApp.BackgroundJob;
+using InitApp.Base;
 
 namespace InitApp
 {
@@ -36,26 +30,11 @@ namespace InitApp
             string AppConnectServerName = Configuration.GetValue<string>("AppConnectClientName");
             string ipAddress = Configuration.GetValue<string>("AppConnectServerIP");
             
-            Console.WriteLine("The ipAddress: " + ipAddress);  
+            Console.WriteLine("The ipAddress of this Pod: " + ipAddress);  
             services.AddControllers();
             services.AddHealthChecks()
                     .AddCheck<ExHealthCheck>("ex_health_check");
-
-            /*services.AddHttpClient("AppConnectClient", c => 
-            {
-                c.BaseAddress = new Uri("https://api.github.com/");
-                // Github API versioning
-                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
-                // Github requires a user-agent
-                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
-            })
-            .ConfigureHttpMessageHandlerBuilder(builder =>
-            {
-                builder.PrimaryHandler = new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback = (m, c, ch, e) => true
-                };
-            });*/
+            services.AddSingleton<IAppConnectSideCar, IBMAppConnectService>();
 
             services.AddHttpClient(AppConnectServerName)
                 .ConfigureHttpMessageHandlerBuilder(builder =>

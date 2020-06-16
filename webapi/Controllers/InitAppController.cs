@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Net;
-using System.Net.Http; 
+using System.Net.Http;
 using Microsoft.Extensions.Configuration;
-using System.Text;
 
 namespace InitApp.Controllers
 {
@@ -15,67 +10,24 @@ namespace InitApp.Controllers
     [Route("[controller]")]
     public class InitAppController : ControllerBase
     {
-        
-        private readonly IHttpClientFactory _clientFactory;
-        private readonly IConfiguration _configuration;
         private readonly ILogger<InitAppController> _logger;
 
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
-
   
-        public InitAppController(IConfiguration configuration, 
-                                IHttpClientFactory clientFactory, 
+        public InitAppController(IConfiguration configuration,                                  
                                 ILogger<InitAppController> logger)
         {    
             _logger = logger;
-            _clientFactory = clientFactory;
-            _configuration  = configuration;
         }
 
-        string xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sec=\"http://www.approuter.com/schemas/2008/1/security\">    <soapenv:Header/>    <soapenv:Body>        <sec:login>          <sec:username>admin</sec:username>          <sec:password>!n0r1t5@C</sec:password> </sec:login>    </soapenv:Body> </soapenv:Envelope>";
         [HttpGet]
         [Route("/InitApp")]               
-        public async Task<string> Get([FromRoute]string ipaddressP)
+        public void Get([FromRoute]string ipaddressP)
         {
-            string toReturn = string.Empty;
-            try {
-                    string ipAddress =  _configuration.GetValue<string>("AppConnectServerIP");
-                    if(ipaddressP == null) 
-                        ipaddressP  = ipAddress;
-
-                    var url = "https://" + ipaddressP + ":8443/ws/security";  
-                    _logger.LogInformation("The url: " + url);
-                    Console.WriteLine("The url: " + url);
-                    var request = new HttpRequestMessage(HttpMethod.Post, url);
-                    
-                    //request.Headers.Add("Content-Type", "text/xml");
-                    var httpContent = new StringContent(xml, Encoding.UTF8, "text/xml");
-                    request.Content = httpContent;
-                    
-                    var client = _clientFactory.CreateClient("AppConnectClient");   
-                                  
-                    var response = await client.SendAsync(request);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        toReturn = await response.Content.ReadAsStringAsync();    
-                    }
-                    else
-                    {
-                        toReturn = response.StatusCode + "" + response.ReasonPhrase;
-                    }
-                    Console.WriteLine("The toReturn: " + toReturn);
-                    _logger.LogInformation("The toReturn: " + toReturn);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex);
-                return ex.ToString();
-            }
-            return toReturn;
+            
         }
     }
 }

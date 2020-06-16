@@ -16,12 +16,16 @@ spec:
     spec:
       containers:
       - name: sidecarapp
-        image: dockerhouse.azurecr.io/codeshipacroke:##tag##         
+        image: dockerhouse.azurecr.io/codeshipacroke:1cae7b76baabacb673356b0f388084a77d755fdb
         ports:
         - containerPort: 8000
         env:              
         - name: "AppConnectServer" 
-          value: "https://localhost:8443/ws/security"          
+          value: "https://127.0.0.1:8443/ws/security"      
+        - name: AppConnectServerIP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP    
       - name: ibmappconnect-app
         image: dockerhouse.azurecr.io/ibmappconnect:7.5.2.0
         ports:
