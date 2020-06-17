@@ -44,8 +44,4 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-<<<<<<< HEAD:sqlserveryaml-dynamic-storage/sqldeployment.yaml
-  type: LoadBalancer
-=======
   type: ClusterIP
->>>>>>> 706779d7ed8da23fbd830c31f5e774fcf9e15b5a:allyamls/sqlserveryaml-dynamic-storage/sqldeployment.yaml
