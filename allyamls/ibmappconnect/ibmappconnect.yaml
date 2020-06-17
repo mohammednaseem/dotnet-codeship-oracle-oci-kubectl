@@ -30,7 +30,7 @@ apiVersion: v1
 metadata:
   name: ibmappconnect-app-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
     protocol: TCP

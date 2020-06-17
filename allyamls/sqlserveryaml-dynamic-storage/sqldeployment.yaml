@@ -18,7 +18,7 @@ spec:
         - containerPort: 1433
         env:
         - name: MSSQL_PID
-          value: "Developer"
+          value: "Express"
         - name: ACCEPT_EULA
           value: "Y"
         - name: SA_PASSWORD
@@ -46,4 +46,4 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-  type: LoadBalancer
+  type: ClusterIP
