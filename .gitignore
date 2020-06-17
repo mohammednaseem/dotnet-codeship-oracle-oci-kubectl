@@ -1,5 +1,6 @@
 dockercfg
 codeship.aes
+secret.yaml
 kubeconfigdata
 *.swp
 *.*~
