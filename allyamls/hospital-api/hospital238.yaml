@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hospital-api   
+  namespace: ibmappconnectns
 spec:
   replicas: 1
   selector:
@@ -37,6 +38,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: hospital-api-service   
+  namespace: ibmappconnectns
 spec:
   type: ClusterIP
   ports:

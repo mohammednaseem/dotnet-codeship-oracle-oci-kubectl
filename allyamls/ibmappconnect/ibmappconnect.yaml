@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ibmappconnect-app
+  namespace: ibmappconnectns
 spec:
   replicas: 1
   selector:
@@ -29,6 +30,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: ibmappconnect-app-service
+  namespace: ibmappconnectns
 spec:
   type: ClusterIP
   ports:

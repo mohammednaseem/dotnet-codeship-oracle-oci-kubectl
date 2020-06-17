@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: locust-web     
+  name: locust-web  
+  namespace: nm   
 spec:
   replicas: 1
   selector:
@@ -32,6 +33,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: locust-web-service   
+  namespace: nm
 spec:
   type: ClusterIP
   ports:
